@@ -9,7 +9,7 @@ CHECKING FOR PERMISSION ERRORS
 
 If there are permission issues, the plugin fails silently. To discover these types of issues, you will need to check the Jenkins logfile, /var/log/jenkins/jenkins.log
 
-Configs:
+CONFINGS:
 
 Plugins persist their configuration through XML files
 Jenkins uses XStream (http://xstream.codehaus.org/) to persist its configuration into a readable XML format. The XML files in the workspace are configuration files for plugins, tasks, and an assortment of other persisted information
