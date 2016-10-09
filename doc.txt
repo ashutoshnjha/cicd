@@ -1,0 +1,24 @@
+Backing up and restoring
+
+A core task for the smooth running of Jenkins is the scheduled backing up of its home directory (mostly at /var/lib/jenkins), not necessarily all the artifacts, but at the least its configuration and the history of testing that plugins need to make reports.
+** Backups are not interesting unless you can restore
+
+Currently, there is more than one plugin for backups. I have chosen the thinBackup plugin (https://wiki.jenkins-ci.org/display/JENKINS/thinBackup) as it allows scheduling.
+
+CHECKING FOR PERMISSION ERRORS
+
+If there are permission issues, the plugin fails silently. To discover these types of issues, you will need to check the Jenkins logfile, /var/log/jenkins/jenkins.log
+
+Configs:
+
+Plugins persist their configuration through XML files
+Jenkins uses XStream (http://xstream.codehaus.org/) to persist its configuration into a readable XML format. The XML files in the workspace are configuration files for plugins, tasks, and an assortment of other persisted information
+
+The config.xml file is the main configuration file. Security settings and global configuration are set here and reflect changes made through the GUI.
+Plugins use the same structure and the XML values correspond to member values in the underlying plugin classes.
+
+ The GUI itself is created from XML via the Jelly framework (http://commons.apache.org/jelly/).
+
+
+TURNING OFF SECURITY
+When you are testing new security features, it is easy to lock yourself out of Jenkins. You will not be able to log in again. To get around this problem, modify useSecurity to false by editing config.xml and restart Jenkins; the security features are now turned off.
